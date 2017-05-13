@@ -1,10 +1,5 @@
 # TestSuite_ProofOfConcept
-Test suite to showcase basic selenium and pytest concepts.
-
-##### Note:
-These instructions are for installing and running the test suite on Ubuntu using
-Firefox.  It should work on other operating systems, but this has not been
-tested.
+Test suite to showcase pytest parameterization concepts.
 
 ## Requirements
 Requirements needed before test suite installation.
@@ -13,7 +8,6 @@ Requirements needed before test suite installation.
 Install and setup the latest versions of the following if you haven't
 already:
 * [Python 2.x with pip and setuptools](https://www.python.org/downloads/)
-* [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 * [Git](https://git-scm.com/downloads)
 
 ### Upgrade pip and setuptools
@@ -28,20 +22,6 @@ you haven't already:
 $ sudo pip install virtualenv
 ```
 
-### GeckoDriver
-Selenium needs GeckoDriver installed in order to work with the latest version
-of Firefox.
-* [Download GeckoDriver](https://github.com/mozilla/geckodriver/releases)
-* Unzip the downloaded file:
-```bash
-$ tar -xvzf geckodriver<version>.tar.gz
-```
-* Move `geckodriver` to the `/usr/local/bin` directory to put it in your
-`PATH`:
-```bash
-$ sudo mv geckodriver /usr/local/bin
-```
-
 ## Install the test suite
 Clone and install the test suite.
 
@@ -51,7 +31,7 @@ If you haven't already, then
 
 ### Navigate to the test directory
 ```bash
-$ cd TestSuite_ProofOfConcept
+$ cd TestSuite_PytestParameterization
 ```
 
 ### Create a Python virtual environment
@@ -89,21 +69,17 @@ $ deactivate
 
 ### Run all the tests
 ```bash
-$ pytest --driver Firefox
+$ pytest --machine all
 ```
 
 ### Run a set of marked tests
-Run all the home page tests:
+Run all the charging tests:
 ```bash
-$ pytest --driver Firefox -m home_page_tests
-```
-Run all the about us page tests:
-```bash
-$ pytest --driver Firefox -m about_us_page_tests
+$ pytest --machine all -m charging_tests
 ```
 
 ### Run a single test
-Run just the test `test_navigate_to_about_us_page()`:
+Run just the test `TBD()`:
 ```bash
-$ pytest --driver Firefox -k "test_navigate_to_about_us_page"
+$ pytest --machine m2 -k "TBD"
 ```
