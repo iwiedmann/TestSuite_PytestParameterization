@@ -67,19 +67,19 @@ Deactivate the virtual environment if you move out of the test suite directory:
 $ deactivate 
 ```
 
-### Run all the tests
+### Run all the tests on defined machines
 ```bash
-$ pytest --machine all
+$ pytest --machines M1 M4 M9
 ```
 
 ### Run a set of marked tests
 Run all the charging tests:
 ```bash
-$ pytest --machine all -m charging_tests
+$ pytest --machine M4 -m charging_tests
 ```
 
 ### Run a single test
-Run just the test `TBD()`:
+Run just the test `test_dispatch2()`:
 ```bash
-$ pytest --machine m2 -k "TBD"
+$ pytest --machine M9 -k "test_dispatch2"
 ```

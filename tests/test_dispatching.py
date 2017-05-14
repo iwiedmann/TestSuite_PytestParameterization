@@ -41,9 +41,9 @@ def test_dispatch1(setup_dispatching, some_settings, some_more_settings):
     pass
 
 
-def test_charge2(setup_machine):
+def test_dispatch2(setup_machine):
     """
-    Test charging number 2.  Test over all machines, but only test on the CLP
+    Test dispatching number 2.
     """
     # setup the CLP
     # test some crap

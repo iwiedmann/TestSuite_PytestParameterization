@@ -25,10 +25,10 @@ def setup_charging(request, setup_machine):
 
     # setup the load
     load_type = request.param
-    if load_type = "CLP":
+    if load_type == "CLP":
         # do some setup crap
         pass
-    elif load_type = "MLP":
+    elif load_type == "MLP":
         # do some setup crap
         pass
 
