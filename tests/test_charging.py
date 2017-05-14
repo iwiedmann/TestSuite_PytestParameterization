@@ -14,15 +14,13 @@ pytestmark = pytest.mark.charging_tests
 # fixtures
 
 @pytest.fixture(scope="module", params=["CLP", "MLP"])
-def setup_charging(request, setup_machine):
+def setup_charging(machine, request):
     """
     Setup and teardown fixture for all the charging tests.  All tests are parameterized over the CLP and MLP.
+    :param machine: global machine fixture
     :param request: built-in pytest request object
-    :param setup_machine: global machine setup fixture
     :return: machine: current machine to run all tests over
     """
-    machine = setup_machine     # rename the machine from the fixture so it is clear
-
     # setup the load
     load_type = request.param
     if load_type == "CLP":
@@ -70,7 +68,7 @@ def test_charge1(setup_charging, power, expected_output):
     testfixtures.compare(expected_output, output, prefix="The output for {power} is not correct".format(power=power))
 
 
-def test_charge2(setup_machine):
+def test_charge2(machine):
     """
     Test charging number 2.  Test over all machines, but only test on the CLP
     """

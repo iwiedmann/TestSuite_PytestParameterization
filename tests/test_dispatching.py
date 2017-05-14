@@ -13,25 +13,28 @@ pytestmark = pytest.mark.dispatching_tests
 # fixtures
 
 @pytest.fixture(scope="module")
-def setup_dispatching(request, setup_machine):
+def setup_dispatching(machine):
     """
     Setup and teardown fixture for all the dispatching tests.
-    :param request: built-in pytest request object
-    :param setup_machine: global machine setup fixture
+    :param machine: global machine fixture
     :return: machine: current machine to run all tests over
     """
-    machine = setup_machine     # rename the machine from the fixture so it is clear
     # setup some crap (note, decided that a teardown is not needed here)
     return machine
 
 
 # tests
 
-@pytest.mark.parametrize("some_setting, another_setting", [
-    ("some_value1", "some_value2"),
-    ("another_value1", pytest.mark.skipif(True, reason="a bug for another_value2")("another_value2"), "another_value3")
+@pytest.mark.parametrize("some_setting", [
+    "some_value1",
+    "some_value2"
 ])
-def test_dispatch1(setup_dispatching, some_settings, some_more_settings):
+@pytest.mark.parametrize("another_setting", [
+    "another_value1",
+    pytest.mark.skipif(True, reason="a bug for another_value2")("another_value2"),
+    "another_value3"
+])
+def test_dispatch1(setup_dispatching, some_setting, another_setting):
     """
     Parameterized test over two sets of settings.
     :param some_setting: some setting
@@ -41,13 +44,17 @@ def test_dispatch1(setup_dispatching, some_settings, some_more_settings):
     pass
 
 
-def test_dispatch2(setup_machine):
+def test_dispatch2(machine):
     """
     Test dispatching number 2.
     """
-    # setup the CLP
-    # test some crap
-    # teardown the CLP
     print "The machine is:"
-    print pytest.config.getvalue("machines")
+#    print pytest.config.getvalue("machine")
     print "Done printing the machine"
+
+
+def test_dispatch3():
+    """
+    Test dispatching number 3.
+    """
+    print "running test dispatch 3"

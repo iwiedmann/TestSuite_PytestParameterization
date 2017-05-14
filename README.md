@@ -69,7 +69,7 @@ $ deactivate
 
 ### Run all the tests on defined machines
 ```bash
-$ pytest --machines M1 M4 M9
+$ pytest --machine M1 --machine M9
 ```
 
 ### Run a set of marked tests
