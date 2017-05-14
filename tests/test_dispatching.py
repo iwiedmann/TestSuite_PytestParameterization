@@ -1,43 +1,53 @@
 """
-Tests for the Sunverge corporate home page.
+Dispatching tests.
 """
 
 import pytest
 
-from TestSuite_ProofOfConcept.pages.home_page import HomePage
+from TestSuite_PytestParameterization.globals import CONFIGURATIONS, MACHINES
 
 
-pytestmark = pytest.mark.home_page_tests
+pytestmark = pytest.mark.dispatching_tests
 
 
 # fixtures
 
-@pytest.fixture
-def setup_home_page(selenium):
+@pytest.fixture(scope="module")
+def setup_dispatching(request, setup_machine):
     """
-    Setup fixture to directly navigate to the Sunverge home page and check that it loaded correctly.
-    :param selenium: pytest-selenium fixture
-    :return: home_pg: object for the home page
+    Setup and teardown fixture for all the dispatching tests.
+    :param request: built-in pytest request object
+    :param setup_machine: global machine setup fixture
+    :return: machine: current machine to run all tests over
     """
-    home_pg = HomePage(selenium)
-    home_pg.go_to_home_page()
-    return home_pg
+    machine = setup_machine     # rename the machine from the fixture so it is clear
+    # setup some crap (note, decided that a teardown is not needed here)
+    return machine
 
 
 # tests
 
-def test_sunverge_logo(setup_home_page):
+@pytest.mark.parametrize("some_setting, another_setting", [
+    ("some_value1", "some_value2"),
+    ("another_value1", pytest.mark.skipif(True, reason="a bug for another_value2")("another_value2"), "another_value3")
+])
+def test_dispatch1(setup_dispatching, some_settings, some_more_settings):
     """
-    Test that the Sunverge logo is visible.
+    Parameterized test over two sets of settings.
+    :param some_setting: some setting
+    :param another_setting: another setting
     """
-    home_pg = setup_home_page
-    assert home_pg.is_sunverge_logo_visible(), "Sunverge logo is not visible"
+    # test some crap
+    pass
 
 
-def test_navigate_to_about_us_page(setup_home_page):
+def test_charge2(setup_machine):
     """
-    Test that you can navigate to the about us page through the link.
+    Test charging number 2.  Test over all machines, but only test on the CLP
     """
-    home_pg = setup_home_page
-    about_us_pg = home_pg.go_to_about_us_page()
-    about_us_pg.check_page_title()
+    # setup the CLP
+    # test some crap
+    # teardown the CLP
+    print "The machine is:"
+    print pytest.config.getvalue("machines")
+    print "Done printing the machine"

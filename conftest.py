@@ -29,7 +29,7 @@ def pytest_generate_tests(metafunc):
     Parameterize the whole test suite over the user defined machines from the command line
     :param metafunc: built-in pytest object
     """
-    if 'machines' in metafunc.fixturenames:
+    if "machines" in metafunc.fixturenames:
         metafunc.parametrize("machines", metafunc.config.option.machines)
 
 
