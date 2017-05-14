@@ -23,7 +23,7 @@ def pytest_addoption(parser):
     )
 
 
-# TODO: change to a singular "mahcine" if possible
+# TODO: change to a singular "machine" if possible
 def pytest_generate_tests(metafunc):
     """
     Parameterize the whole test suite over the user defined machines from the command line
@@ -33,13 +33,14 @@ def pytest_generate_tests(metafunc):
         metafunc.parametrize("machines", metafunc.config.option.machines)
 
 
-@pytest.fixture(scope="session", autouse=True)
-def machine_setup(machines, request):
+@pytest.fixture(scope="session")
+def setup_machine(request, machines):
     """
-    Global setup and teardown fixture for each machine in the parameterized list of machines to run.  All tests will
-    inherit this fixture and hence all tests will be run over all defined machines unless specified in the test.
-    :param machines: current machine to run all tests over
+    Global setup and teardown fixture for each machine in the parameterized list of machines to run.  All tests that
+    inherit this fixture will be run over all defined machines unless specified in the test.
     :param request: built-in pytest request object
+    :param machines: current machine to run all tests over
+    :return: machines: current machine to run all tests over
     """
     # optional global machine setup
     if MACHINES[machines] == CONFIGURATIONS["config2"]:
@@ -51,3 +52,4 @@ def machine_setup(machines, request):
             # do some global teardown for config2
             pass
     request.addfinalizer(teardown)
+    return machines
