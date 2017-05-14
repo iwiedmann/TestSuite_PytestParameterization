@@ -68,9 +68,10 @@ def test_charge1(setup_charging, power, expected_output):
     testfixtures.compare(expected_output, output, prefix="The output for {power} is not correct".format(power=power))
 
 
+@pytest.mark.random_group_of_tests
 def test_charge2(machine):
     """
-    Test charging number 2.  Test over all machines, but only test on the CLP
+    Test charging number 2.  Test over all machines, but only test on the CLP.
     """
     # setup the CLP
     # test some crap

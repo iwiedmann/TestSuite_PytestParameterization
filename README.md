@@ -84,7 +84,7 @@ Run just the test `test_dispatch2()`:
 $ pytest --machine M9 -k "test_dispatch2"
 ```
 
-### Use verbose mode to print out test details
+### Use verbose mode to print out test run details
 ```bash
 $ pytest -v --machine M1 --machine M9
 ```

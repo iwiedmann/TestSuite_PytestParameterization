@@ -46,15 +46,16 @@ def test_dispatch1(setup_dispatching, some_setting, another_setting):
 
 def test_dispatch2(machine):
     """
-    Test dispatching number 2.
+    Test dispatching number 2.  This test will never be run on machine M4.
     """
-    print "The machine is:"
-#    print pytest.config.getvalue("machine")
-    print "Done printing the machine"
+    if machine == "M4":
+        pytest.skip("This test cannot be run on machine M4.")
+    pass
 
 
+@pytest.mark.random_group_of_tests
 def test_dispatch3():
     """
-    Test dispatching number 3.
+    Test dispatching number 3.  Note that this does not run on any machine since the machine fixture was not passed in.
     """
-    print "running test dispatch 3"
+    pass
