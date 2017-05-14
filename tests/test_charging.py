@@ -13,7 +13,7 @@ pytestmark = pytest.mark.charging_tests
 
 # fixtures
 
-@pytest.fixture(scope="module", params=["CLP", "MLP"])
+@pytest.fixture(params=["CLP", "MLP"])
 def setup_charging(machine, request):
     """
     Setup and teardown fixture for all the charging tests.  All tests are parameterized over the CLP and MLP.

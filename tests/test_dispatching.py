@@ -12,7 +12,7 @@ pytestmark = pytest.mark.dispatching_tests
 
 # fixtures
 
-@pytest.fixture(scope="module")
+@pytest.fixture()
 def setup_dispatching(machine):
     """
     Setup and teardown fixture for all the dispatching tests.

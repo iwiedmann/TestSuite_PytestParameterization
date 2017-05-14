@@ -69,7 +69,7 @@ $ deactivate
 
 ### Run all the tests on defined machines
 ```bash
-$ pytest --machine M1 --machine M9
+$ pytest --machine M1 --machine M4 --machine M9
 ```
 
 ### Run a set of marked tests
@@ -82,4 +82,14 @@ $ pytest --machine M4 -m charging_tests
 Run just the test `test_dispatch2()`:
 ```bash
 $ pytest --machine M9 -k "test_dispatch2"
+```
+
+### Use verbose mode to print out test details
+```bash
+$ pytest -v --machine M1 --machine M9
+```
+
+### Print out messages for tests that are skipped
+```bash
+$ pytest -rs --machine M1
 ```
